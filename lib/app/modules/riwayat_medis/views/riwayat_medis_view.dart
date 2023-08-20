@@ -11,6 +11,7 @@ import 'package:pluitcare/app/modules/riwayat_medis/views/widgets/widget_title_r
 import 'package:pluitcare/app/modules/riwayat_medis/views/widgets/widget_title_riwayat3.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../data/componen/my_font_size.dart';
+import '../../home/views/home_view.dart';
 
 class RiwayatMedisView extends StatefulWidget {
   const RiwayatMedisView({Key? key, this.title}) : super(key: key);
@@ -37,7 +38,14 @@ class _RiwayatMedisViewState extends State<RiwayatMedisView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HomeView()), // Ganti dengan halaman home Anda
+      );
+      return true;
+    },
+    child: Scaffold(
       backgroundColor: const Color(0xff4babe7),
       body: SmartRefresher(
         controller: _refreshController,
@@ -187,15 +195,16 @@ class _RiwayatMedisViewState extends State<RiwayatMedisView> {
                                     );
                                   }
                                 });
-                          }),
-                        ],
+                            }),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ]),
-            ),
-          ],
+                    ],
+                  ),
+                ]),
+              ),
+            ],
+          ),
         ),
       ),
     );

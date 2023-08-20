@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:text_scroll/text_scroll.dart';
 
+import '../../home/views/home_view.dart';
 import '../controllers/rubah_password_controller.dart';
 
 class RubahPasswordView extends StatefulWidget {
@@ -34,7 +35,9 @@ class _RubahPasswordViewState extends State<RubahPasswordView> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.of(context).popUntil((route) => route.isFirst);
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomeView()), // Ganti dengan halaman home Anda
+        );
         return true;
       },
       child: Scaffold(

@@ -6,6 +6,8 @@ import 'package:pluitcare/app/modules/edit-profile/views/widgets/card_edit.dart'
 import 'package:text_scroll/text_scroll.dart';
 
 import '../../../data/componen/my_font_size.dart';
+import '../../profile_pasien/views/profile_pasien_view.dart';
+import '../../rubah_password/views/rubah_password_view.dart';
 import '../controllers/edit_profile_controller.dart';
 
 class EditProfileView extends GetView<EditProfileController> {
@@ -13,7 +15,14 @@ class EditProfileView extends GetView<EditProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  WillPopScope(
+        onWillPop: () async {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => RubahPasswordView()), // Ganti dengan halaman home Anda
+      );
+      return true;
+    },
+    child: Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.light
           ? Color(0xfff6f9fe)
           : Color(0xff2C3333),
@@ -93,6 +102,7 @@ class EditProfileView extends GetView<EditProfileController> {
             ]),
           ),
         ],
+      ),
       ),
     );
   }

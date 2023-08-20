@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pluitcare/app/routes/app_pages.dart';
 
 import '../../../data/componen/my_font_size.dart';
+import '../../home/views/home_view.dart';
 import '../controllers/profile_pasien_controller.dart';
 import 'widgets/card_profile.dart';
 
@@ -12,7 +13,14 @@ class ProfilePasienView extends GetView<ProfilePasienController> {
   const ProfilePasienView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HomeView()), // Ganti dengan halaman home Anda
+      );
+      return true;
+    },
+    child: Scaffold(
       backgroundColor: Color(0xff4babe7),
       body: CustomScrollView(
         slivers: [
@@ -57,6 +65,7 @@ class ProfilePasienView extends GetView<ProfilePasienController> {
             ]),
           ),
         ],
+        ),
       ),
     );
   }

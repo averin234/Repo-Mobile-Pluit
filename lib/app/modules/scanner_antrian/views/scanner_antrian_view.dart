@@ -6,12 +6,21 @@ import 'package:pluitcare/app/data/componen/fetch_data.dart';
 import 'package:pluitcare/app/modules/scanner_antrian/controllers/scanner_antrian_controller.dart';
 import 'package:pluitcare/app/routes/app_pages.dart';
 
+import '../../home/views/home_view.dart';
+
 class ScannerAntrianView extends GetView<ScannerAntrianController> {
   const ScannerAntrianView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HomeView()), // Ganti dengan halaman home Anda
+      );
+      return true;
+    },
+    child: Scaffold(
       appBar: AppBar(
         title: const Text('Mobile Scanner'),
         actions: [
@@ -78,9 +87,10 @@ class ScannerAntrianView extends GetView<ScannerAntrianController> {
               ),
               title: scan.code.toString(),
               barrierDismissible: false,
-            );
-          }
-        },
+              );
+            }
+          },
+        ),
       ),
     );
   }
